@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -44,7 +44,8 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased font-sans;
+    font-family: 'Poppins', sans-serif;
   }
 
   .gradient-bg {
@@ -66,7 +67,7 @@
   .feature-card {
     @apply relative overflow-hidden rounded-xl border border-white/20 backdrop-blur-sm 
     bg-white/5 transition-all ease-in-out duration-300 
-    hover:shadow-lg hover:shadow-web3-purple/20 hover:-translate-y-1;
+    hover:shadow-lg hover:shadow-web3-purple/30 hover:-translate-y-2;
   }
   
   .feature-card::before {
@@ -77,6 +78,34 @@
   
   .feature-card:hover::before {
     @apply opacity-100;
+  }
+
+  .pricing-card {
+    @apply relative overflow-hidden rounded-xl border border-white/20 backdrop-blur-sm 
+    bg-gradient-to-b from-white/5 to-white/10 transition-all ease-in-out duration-300 
+    hover:shadow-lg hover:shadow-web3-purple/20 hover:-translate-y-1;
+  }
+
+  .pricing-card.featured {
+    @apply border-web3-purple/30 bg-gradient-to-b from-web3-purple/10 to-web3-purple/5;
+  }
+
+  .testimonial-card {
+    @apply relative overflow-hidden rounded-xl border border-white/20 backdrop-blur-sm 
+    bg-white/5 transition-all ease-in-out duration-300 p-6;
+  }
+
+  .timeline-item {
+    @apply relative pl-10 pb-10 border-l border-web3-purple/30 last:border-0;
+  }
+
+  .timeline-dot {
+    @apply absolute -left-2.5 mt-1.5 h-5 w-5 rounded-full border-4 border-background bg-web3-purple;
+  }
+
+  .roadmap-card {
+    @apply relative overflow-hidden rounded-xl border border-white/20 backdrop-blur-sm
+    bg-white/5 transition-all ease-in-out duration-300;
   }
 }
 
@@ -92,4 +121,32 @@
   .clip-path-triangle {
     clip-path: polygon(50% 0, 100% 100%, 0 100%);
   }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) translateX(10px) rotate(5deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite alternate;
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
 }
