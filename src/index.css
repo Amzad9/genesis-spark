@@ -107,6 +107,69 @@
     @apply relative overflow-hidden rounded-xl border border-white/20 backdrop-blur-sm
     bg-white/5 transition-all ease-in-out duration-300;
   }
+  
+  /* New creative styles */
+  .glow-effect {
+    @apply relative;
+  }
+  
+  .glow-effect::after {
+    content: "";
+    @apply absolute inset-0 -z-10 bg-gradient-to-r from-web3-purple to-web3-teal 
+    opacity-75 blur-xl transition-all duration-500;
+    transform: translate(0, 0) scale(0.85);
+  }
+  
+  .glow-effect:hover::after {
+    transform: translate(0, 0) scale(0.9);
+    @apply opacity-100;
+  }
+  
+  .animated-border {
+    @apply relative rounded-xl p-0.5;
+    background: linear-gradient(60deg, var(--web3-purple), var(--web3-teal), var(--web3-blue), var(--web3-purple)) 0 0 / 300% 100%;
+    animation: move-bg 8s linear infinite;
+  }
+  
+  .animated-border-content {
+    @apply bg-background rounded-[calc(0.75rem-1px)] p-6;
+  }
+  
+  .wave-animation {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .wave-animation::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(60deg, var(--web3-purple), var(--web3-teal));
+    animation: wave 8s linear infinite;
+    border-radius: 100%;
+  }
+  
+  .aspect-w-16 {
+    position: relative;
+    padding-bottom: 56.25%;
+  }
+  
+  .aspect-h-9 {
+    position: relative;
+  }
+  
+  .aspect-w-16 > * {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 @layer utilities {
@@ -143,10 +206,50 @@
   }
 }
 
+@keyframes wave {
+  0% {
+    transform: translateX(-100%) scale(50, 15);
+  }
+  100% {
+    transform: translateX(100%) scale(50, 15);
+  }
+}
+
+@keyframes move-bg {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
 .animate-pulse-slow {
   animation: pulse-slow 8s ease-in-out infinite alternate;
 }
 
 .card-hover {
   @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* Creative scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-web3-purple to-web3-teal rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gradient-to-b from-web3-teal to-web3-purple;
+}
+
+/* Text selection */
+::selection {
+  @apply bg-web3-purple/30 text-foreground;
 }

@@ -11,6 +11,7 @@ import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import Roadmap from "@/components/Roadmap";
+import VideoDemo from "@/components/VideoDemo";
 
 const Index = () => {
   // Add smooth scroll behavior when navigation links are clicked
@@ -42,6 +43,7 @@ const Index = () => {
       <Hero />
       <Stats />
       <Features />
+      <VideoDemo />
       <About />
       <Roadmap />
       <Testimonials />

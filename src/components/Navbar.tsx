@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Layers, Zap, Menu, X } from "lucide-react";
+import { Layers, Zap, Menu, X, Film } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
@@ -31,6 +31,7 @@ const Navbar = () => {
 
   const navItems = [
     { id: "features", label: "Features" },
+    { id: "video-demo", label: "Demo", icon: <Film className="h-3 w-3 ml-1" /> },
     { id: "about", label: "About" },
     { id: "roadmap", label: "Roadmap" },
     { id: "pricing", label: "Pricing" },
@@ -57,9 +58,13 @@ const Navbar = () => {
             <button 
               key={item.id}
               onClick={() => scrollToSection(item.id)} 
-              className="text-sm font-medium transition-colors hover:text-web3-purple"
+              className="text-sm font-medium transition-colors hover:text-web3-purple flex items-center"
             >
               {item.label}
+              {item.icon && item.icon}
+              {item.id === "video-demo" && (
+                <span className="ml-1 inline-flex items-center justify-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-web3-purple text-white">NEW</span>
+              )}
             </button>
           ))}
         </div>
@@ -99,9 +104,13 @@ const Navbar = () => {
                 <button 
                   key={item.id}
                   onClick={() => scrollToSection(item.id)} 
-                  className="py-2 text-left font-medium hover:text-web3-purple transition-colors"
+                  className="py-2 text-left font-medium hover:text-web3-purple transition-colors flex items-center"
                 >
                   {item.label}
+                  {item.icon && item.icon}
+                  {item.id === "video-demo" && (
+                    <span className="ml-1 inline-flex items-center justify-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-web3-purple text-white">NEW</span>
+                  )}
                 </button>
               ))}
               <Button 

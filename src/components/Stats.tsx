@@ -22,14 +22,33 @@ const StatCard = ({ item }: { item: StatItem }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: item.delay }}
       viewport={{ once: true }}
-      className="text-center p-6"
+      className="glow-effect text-center p-6"
     >
-      <div className="mx-auto mb-5 p-3 rounded-full w-16 h-16 flex items-center justify-center bg-web3-purple/10">
-        {item.icon}
+      <div className="mx-auto mb-5 p-3 rounded-full w-16 h-16 flex items-center justify-center bg-gradient-to-br from-web3-purple/20 to-web3-teal/20">
+        <motion.div
+          animate={{ 
+            rotate: [0, 10, 0, -10, 0],
+            scale: [1, 1.1, 1, 1.1, 1]
+          }}
+          transition={{ 
+            duration: 5, 
+            ease: "easeInOut", 
+            times: [0, 0.25, 0.5, 0.75, 1],
+            repeat: Infinity,
+            repeatDelay: 0
+          }}
+        >
+          {item.icon}
+        </motion.div>
       </div>
-      <h3 className="text-4xl font-bold mb-2 bg-gradient-to-r from-web3-purple to-web3-teal bg-clip-text text-transparent">
+      <motion.h3 
+        className="text-4xl font-bold mb-2 bg-gradient-to-r from-web3-purple to-web3-teal bg-clip-text text-transparent"
+        initial={{ backgroundPosition: '0% 50%' }}
+        animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+      >
         {item.value}
-      </h3>
+      </motion.h3>
       <p className="text-muted-foreground">{item.label}</p>
     </motion.div>
   );
@@ -64,8 +83,30 @@ const Stats = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-r from-web3-purple/10 to-web3-teal/10">
-      <div className="container mx-auto px-4">
+    <section className="py-20 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-web3-purple/5 via-transparent to-web3-teal/5 z-0"></div>
+      
+      {/* Animated background elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        {[...Array(10)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full opacity-20"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              width: `${Math.random() * 300 + 50}px`,
+              height: `${Math.random() * 300 + 50}px`,
+              backgroundColor: Math.random() > 0.5 ? 'var(--web3-purple)' : 'var(--web3-teal)',
+              filter: 'blur(60px)',
+              animation: `pulse-slow ${Math.random() * 10 + 5}s ease-in-out infinite alternate`,
+              animationDelay: `${Math.random() * 5}s`
+            }}
+          />
+        ))}
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           className="grid grid-cols-2 md:grid-cols-4 gap-6"
           initial={{ opacity: 0 }}
@@ -78,6 +119,10 @@ const Stats = () => {
           ))}
         </motion.div>
       </div>
+      
+      {/* Decorative divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-web3-purple/30 to-transparent"></div>
+      <div className="absolute bottom-2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-web3-teal/20 to-transparent"></div>
     </section>
   );
 };
