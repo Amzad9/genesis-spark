@@ -93,7 +93,7 @@ const Team = () => {
     {
       name: "Priya Sharma",
       role: "Chief AI Architect",
-      image: "https://images.unsplash.com/photo-1567532939604-b6b5ec751fdf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80",
       socials: {
         github: "#",
         linkedin: "#",
